@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="Consumerkey" elementType="Argument">
+            <stringProp name="Argument.name">Consumerkey</stringProp>
+            <stringProp name="Argument.value">your  Consumerkey</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="ConsumerSecret" elementType="Argument">
+            <stringProp name="Argument.name">ConsumerSecret</stringProp>
+            <stringProp name="Argument.value">your ConsumerSecret</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="AccessToken" elementType="Argument">
+            <stringProp name="Argument.name">AccessToken</stringProp>
+            <stringProp name="Argument.value">Your AccessToken</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="TokenSecret" elementType="Argument">
+            <stringProp name="Argument.name">TokenSecret</stringProp>
+            <stringProp name="Argument.value">Your AccessToken</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Twitter API Implementation" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.delayedStart">false</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers"/>
+        </HeaderManager>
+        <hashTree/>
+        <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+          <boolProp name="clearEachIteration">false</boolProp>
+          <boolProp name="useExpires">true</boolProp>
+          <boolProp name="CacheManager.controlledByThread">false</boolProp>
+        </CacheManager>
+        <hashTree/>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies"/>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+          <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+        </CookieManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Tweet on X" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">api.twitter.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">2/tweets/1707272706964758617</stringProp>
+          <stringProp name="HTTPSampler.method">DELETE</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.value">${signaturekey}</stringProp>
+                <stringProp name="Header.name">Authorization</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">
+import org.apache.commons.codec.digest.DigestUtils;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+/**
+ * @author Daniel DeGroff
+ */
+public class OAuth1AuthorizationHeaderBuilder {
+    private static final char[] HEX = &quot;0123456789ABCDEF&quot;.toCharArray();
+
+    // https://tools.ietf.org/html/rfc3986#section-2.3
+    private static final Set&lt;Character&gt; UnreservedChars = new HashSet&lt;&gt;(Arrays.asList(
+        &apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos;, &apos;G&apos;, &apos;H&apos;, &apos;I&apos;, &apos;J&apos;, &apos;K&apos;, &apos;L&apos;, &apos;M&apos;, &apos;N&apos;, &apos;O&apos;, &apos;P&apos;, &apos;Q&apos;, &apos;R&apos;, &apos;S&apos;, &apos;T&apos;, &apos;U&apos;, &apos;V&apos;, &apos;W&apos;, &apos;X&apos;, &apos;Y&apos;, &apos;Z&apos;,
+        &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;, &apos;m&apos;, &apos;n&apos;, &apos;o&apos;, &apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;, &apos;t&apos;, &apos;u&apos;, &apos;v&apos;, &apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;,
+        &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;,
+        &apos;-&apos;, &apos;_&apos;, &apos;.&apos;, &apos;~&apos;));
+
+    public String consumerSecret;
+    public String method;
+    public String parameterString;
+    public String queryParameters = &quot;&quot;;
+    public Map&lt;String, String&gt; queryParametersMap = new LinkedHashMap&lt;&gt;();
+    public Map&lt;String, String&gt; parameters = new LinkedHashMap&lt;&gt;();
+    public String signature;
+    public String signatureBaseString;
+    public String signingKey;
+    public String tokenSecret;
+    public String url;
+
+    /***
+     * Replaces any character not specifically unreserved to an equivalent percent sequence.
+     *
+     * @param s the string to encode
+     * @return and encoded string
+     */
+    public static String encodeURIComponent(String s) {
+        StringBuilder o = new StringBuilder();
+        for (byte b : s.getBytes(StandardCharsets.UTF_8)) {
+            if (isSafe(b)) {
+                o.append((char) b);
+            } else {
+                o.append(&apos;%&apos;);
+                o.append(HEX[((b &amp; 0xF0) &gt;&gt; 4)]);
+                o.append(HEX[((b &amp; 0x0F))]);
+            }
+        }
+        return o.toString();
+    }
+
+    private static boolean isSafe(byte b) {
+        return UnreservedChars.contains((char) b);
+    }
+
+    public String build() {
+        // For testing purposes, only add the timestamp if it has not yet been added
+        if (!parameters.containsKey(&quot;oauth_timestamp&quot;)) {
+            parameters.put(&quot;oauth_timestamp&quot;, &quot;&quot; + Instant.now().getEpochSecond());
+        }
+
+        //Boiler plate parameters
+        parameters.put(&quot;oauth_nonce&quot;, nonceGenerator());
+        parameters.put(&quot;oauth_signature_method&quot;, &quot;HMAC-SHA1&quot;);
+        parameters.put(&quot;oauth_version&quot;, &quot;1.0&quot;);
+
+        Map&lt;String, String&gt; parametersCopy = new LinkedHashMap&lt;&gt;(parameters);
+        parametersCopy.putAll(queryParametersMap);
+
+        //Build the parameter string after sorting the keys in lexicographic order per the OAuth v1 spec.
+        parameterString = parametersCopy.entrySet().stream()
+            .sorted(Map.Entry.comparingByKey())
+            .map(e -&gt; encodeURIComponent(e.getKey()) + &quot;=&quot; + encodeURIComponent(e.getValue()))
+            .collect(Collectors.joining(&quot;&amp;&quot;));
+
+        // Build the signature base string
+        signatureBaseString = method.toUpperCase() + &quot;&amp;&quot; + encodeURIComponent(url) + &quot;&amp;&quot; + encodeURIComponent(parameterString);
+
+        // If the signing key was not provided, build it by encoding the consumer secret + the token secret
+        if (signingKey == null) {
+            signingKey = encodeURIComponent(consumerSecret) + &quot;&amp;&quot; + (tokenSecret == null ? &quot;&quot; : encodeURIComponent(tokenSecret));
+        }
+
+        // Sign the Signature Base String
+        signature = generateSignature(signingKey, signatureBaseString);
+
+        // Add the signature to be included in the header
+        parameters.put(&quot;oauth_signature&quot;, signature);
+
+        // Build the authorization header value using the order in which the parameters were added
+        return &quot;OAuth &quot; + parameters.entrySet().stream()
+            .map(e -&gt; encodeURIComponent(e.getKey()) + &quot;=\&quot;&quot; + encodeURIComponent(e.getValue()) + &quot;\&quot;&quot;)
+            .collect(Collectors.joining(&quot;, &quot;));
+    }
+
+    public String generateSignature(String secret, String message) {
+        try {
+            byte[] bytes = secret.getBytes(StandardCharsets.UTF_8);
+            Mac mac = Mac.getInstance(&quot;HmacSHA1&quot;);
+            mac.init(new SecretKeySpec(bytes, &quot;HmacSHA1&quot;));
+            byte[] result = mac.doFinal(message.getBytes(StandardCharsets.UTF_8));
+            return Base64.getEncoder().encodeToString(result);
+        } catch (InvalidKeyException | NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Set the Consumer Secret
+     *
+     * @param consumerSecret the Consumer Secret
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withConsumerSecret(String consumerSecret) {
+        this.consumerSecret = consumerSecret;
+        return this;
+    }
+
+    /**
+     * Set the requested HTTP method
+     *
+     * @param method the HTTP method you are requesting
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withMethod(String method) {
+        this.method = method;
+        return this;
+    }
+
+    /**
+     * Add a parameter to the be included when building the signature.
+     *
+     * @param name  the parameter name
+     * @param value the parameter value
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withParameter(String name, String value) {
+        parameters.put(name, value);
+        return this;
+    }
+
+
+    public OAuth1AuthorizationHeaderBuilder withURLQueryParameter(String queryParameters) {
+        if (queryParameters == null || queryParameters.isEmpty()) {
+            this.queryParameters = &quot;&quot;;
+        } else {
+            String[] kvp = queryParameters.split(&quot;=&quot;);
+            this.queryParametersMap.put(kvp[0], kvp[1]);
+            this.queryParameters += &quot;&amp;&quot; + queryParameters;
+        }
+        return this;
+    }
+
+    /**
+     * Set the OAuth Token Secret
+     *
+     * @param tokenSecret the OAuth Token Secret
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withTokenSecret(String tokenSecret) {
+        this.tokenSecret = tokenSecret;
+        return this;
+    }
+
+    /**
+     * Set the requested URL in the builder.
+     *
+     * @param url the URL you are requesting
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withURL(String url) {
+
+        if (url.contains(&quot;?&quot;)) {
+            handleQueryParam(url);
+        } else {
+            this.url = url;
+        }
+        return this;
+    }
+
+    /**
+     * If url contains queryParam , extract them from the this.url data member
+     * and assign the, to the this.queryParameters data member &lt;br/&gt;
+     * &lt;p&gt;
+     * For ex: &lt;br/&gt;
+     * URL: &lt;i&gt;https://lp-agentmngworkspace-qa.dev.lprnd.net/manager_workspace/api/account/le61691980/agent_view?version=v1&lt;/i&gt;
+     * will lead to : &lt;br/&gt;
+     * url = &lt;b&gt;https://lp-agentmngworkspace-qa.dev.lprnd.net/manager_workspace/api/account/le61691980/agent_view&lt;/b&gt; &lt;br/&gt;
+     * queryParameters = &lt;b&gt;&amp;version=v1&lt;/b&gt; &lt;br/&gt;
+     *
+     * @param url
+     */
+    private void handleQueryParam(String url) {
+        if (url.contains(&quot;?&quot;)) {
+            String queryParam = url.substring(url.indexOf(&quot;?&quot;));
+            if (queryParam.length() &gt; 1) {
+                queryParam = queryParam.substring(1);
+
+                String[] paramTokens = queryParam.split(&quot;&amp;&quot;);
+                if (paramTokens != null) {
+                    for (String paramToken : paramTokens) {
+                        String[] paramNameAndValue = paramToken.split(&quot;=&quot;);
+                        if (paramNameAndValue != null) {
+                            this.withURLQueryParameter(paramToken);
+                        }
+                    }
+                }
+            }
+            this.url = url.substring(0, url.indexOf(&quot;?&quot;));
+
+        }
+    }
+
+    public static String nonceGenerator() {
+        SecureRandom secureRandom = new SecureRandom();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i &lt; 15; i++) {
+            stringBuilder.append(secureRandom.nextInt(10));
+        }
+        String randomNumber = stringBuilder.toString();
+        return DigestUtils.md5Hex(randomNumber);
+    }
+
+}
+
+
+String Consumerkey= vars.get(&quot;Consumerkey&quot;);
+String ConsumerSecret= vars.get(&quot;ConsumerSecret&quot;);
+String AccessToken= vars.get(&quot;AccessToken&quot;);
+String TokenSecret= vars.get(&quot;TokenSecret&quot;);
+
+String authorization = new OAuth1AuthorizationHeaderBuilder()
+        .withMethod(&quot;DELETE&quot;)
+        .withURL(&quot;https://api.twitter.com/2/tweets/1707272706964758617&quot;)
+        .withConsumerSecret(ConsumerSecret)
+        .withTokenSecret(TokenSecret)
+        //.withParameter(&quot;oauth_callback&quot;, &quot;https://localhost&quot;)
+       // .withParameter(&quot;text&quot;, &apos;&quot;{&quot;text&quot;: &quot;Hello World!&quot;}&quot;&apos;)
+        .withParameter(&quot;oauth_consumer_key&quot;, Consumerkey)
+        .withParameter(&quot;oauth_token&quot;, AccessToken)
+        .build();
+
+       // byte[] authorization1 = Base64.decodeBase64(authorization);
+//System.out.println(&quot;Decoded value is &quot; + new String(valueDecoded));
+
+ //String authorization1 = URLEncoder.encode(authorization, StandardCharsets.UTF_8)
+
+        vars.put(&quot;signaturekey&quot;,authorization);
+
+        log.info(&quot;oauth token=&quot;+authorization);
+
+
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get User details  of  X" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">api.twitter.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">2/users/me</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.value">${signaturekey}</stringProp>
+                <stringProp name="Header.name">Authorization</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">
+
+import org.apache.commons.codec.digest.DigestUtils;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+/**
+ * @author Daniel DeGroff
+ */
+public class OAuth1AuthorizationHeaderBuilder {
+    private static final char[] HEX = &quot;0123456789ABCDEF&quot;.toCharArray();
+
+    // https://tools.ietf.org/html/rfc3986#section-2.3
+    private static final Set&lt;Character&gt; UnreservedChars = new HashSet&lt;&gt;(Arrays.asList(
+        &apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos;, &apos;G&apos;, &apos;H&apos;, &apos;I&apos;, &apos;J&apos;, &apos;K&apos;, &apos;L&apos;, &apos;M&apos;, &apos;N&apos;, &apos;O&apos;, &apos;P&apos;, &apos;Q&apos;, &apos;R&apos;, &apos;S&apos;, &apos;T&apos;, &apos;U&apos;, &apos;V&apos;, &apos;W&apos;, &apos;X&apos;, &apos;Y&apos;, &apos;Z&apos;,
+        &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;, &apos;m&apos;, &apos;n&apos;, &apos;o&apos;, &apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;, &apos;t&apos;, &apos;u&apos;, &apos;v&apos;, &apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;,
+        &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;,
+        &apos;-&apos;, &apos;_&apos;, &apos;.&apos;, &apos;~&apos;));
+
+    public String consumerSecret;
+    public String method;
+    public String parameterString;
+    public String queryParameters = &quot;&quot;;
+    public Map&lt;String, String&gt; queryParametersMap = new LinkedHashMap&lt;&gt;();
+    public Map&lt;String, String&gt; parameters = new LinkedHashMap&lt;&gt;();
+    public String signature;
+    public String signatureBaseString;
+    public String signingKey;
+    public String tokenSecret;
+    public String url;
+
+    /***
+     * Replaces any character not specifically unreserved to an equivalent percent sequence.
+     *
+     * @param s the string to encode
+     * @return and encoded string
+     */
+    public static String encodeURIComponent(String s) {
+        StringBuilder o = new StringBuilder();
+        for (byte b : s.getBytes(StandardCharsets.UTF_8)) {
+            if (isSafe(b)) {
+                o.append((char) b);
+            } else {
+                o.append(&apos;%&apos;);
+                o.append(HEX[((b &amp; 0xF0) &gt;&gt; 4)]);
+                o.append(HEX[((b &amp; 0x0F))]);
+            }
+        }
+        return o.toString();
+    }
+
+    private static boolean isSafe(byte b) {
+        return UnreservedChars.contains((char) b);
+    }
+
+    public String build() {
+        // For testing purposes, only add the timestamp if it has not yet been added
+        if (!parameters.containsKey(&quot;oauth_timestamp&quot;)) {
+            parameters.put(&quot;oauth_timestamp&quot;, &quot;&quot; + Instant.now().getEpochSecond());
+        }
+
+        //Boiler plate parameters
+        parameters.put(&quot;oauth_nonce&quot;, nonceGenerator());
+        parameters.put(&quot;oauth_signature_method&quot;, &quot;HMAC-SHA1&quot;);
+        parameters.put(&quot;oauth_version&quot;, &quot;1.0&quot;);
+
+        Map&lt;String, String&gt; parametersCopy = new LinkedHashMap&lt;&gt;(parameters);
+        parametersCopy.putAll(queryParametersMap);
+
+        //Build the parameter string after sorting the keys in lexicographic order per the OAuth v1 spec.
+        parameterString = parametersCopy.entrySet().stream()
+            .sorted(Map.Entry.comparingByKey())
+            .map(e -&gt; encodeURIComponent(e.getKey()) + &quot;=&quot; + encodeURIComponent(e.getValue()))
+            .collect(Collectors.joining(&quot;&amp;&quot;));
+
+        // Build the signature base string
+        signatureBaseString = method.toUpperCase() + &quot;&amp;&quot; + encodeURIComponent(url) + &quot;&amp;&quot; + encodeURIComponent(parameterString);
+
+        // If the signing key was not provided, build it by encoding the consumer secret + the token secret
+        if (signingKey == null) {
+            signingKey = encodeURIComponent(consumerSecret) + &quot;&amp;&quot; + (tokenSecret == null ? &quot;&quot; : encodeURIComponent(tokenSecret));
+        }
+
+        // Sign the Signature Base String
+        signature = generateSignature(signingKey, signatureBaseString);
+
+        // Add the signature to be included in the header
+        parameters.put(&quot;oauth_signature&quot;, signature);
+
+        // Build the authorization header value using the order in which the parameters were added
+        return &quot;OAuth &quot; + parameters.entrySet().stream()
+            .map(e -&gt; encodeURIComponent(e.getKey()) + &quot;=\&quot;&quot; + encodeURIComponent(e.getValue()) + &quot;\&quot;&quot;)
+            .collect(Collectors.joining(&quot;, &quot;));
+    }
+
+    public String generateSignature(String secret, String message) {
+        try {
+            byte[] bytes = secret.getBytes(StandardCharsets.UTF_8);
+            Mac mac = Mac.getInstance(&quot;HmacSHA1&quot;);
+            mac.init(new SecretKeySpec(bytes, &quot;HmacSHA1&quot;));
+            byte[] result = mac.doFinal(message.getBytes(StandardCharsets.UTF_8));
+            return Base64.getEncoder().encodeToString(result);
+        } catch (InvalidKeyException | NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Set the Consumer Secret
+     *
+     * @param consumerSecret the Consumer Secret
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withConsumerSecret(String consumerSecret) {
+        this.consumerSecret = consumerSecret;
+        return this;
+    }
+
+    /**
+     * Set the requested HTTP method
+     *
+     * @param method the HTTP method you are requesting
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withMethod(String method) {
+        this.method = method;
+        return this;
+    }
+
+    /**
+     * Add a parameter to the be included when building the signature.
+     *
+     * @param name  the parameter name
+     * @param value the parameter value
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withParameter(String name, String value) {
+        parameters.put(name, value);
+        return this;
+    }
+
+
+    public OAuth1AuthorizationHeaderBuilder withURLQueryParameter(String queryParameters) {
+        if (queryParameters == null || queryParameters.isEmpty()) {
+            this.queryParameters = &quot;&quot;;
+        } else {
+            String[] kvp = queryParameters.split(&quot;=&quot;);
+            this.queryParametersMap.put(kvp[0], kvp[1]);
+            this.queryParameters += &quot;&amp;&quot; + queryParameters;
+        }
+        return this;
+    }
+
+    /**
+     * Set the OAuth Token Secret
+     *
+     * @param tokenSecret the OAuth Token Secret
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withTokenSecret(String tokenSecret) {
+        this.tokenSecret = tokenSecret;
+        return this;
+    }
+
+    /**
+     * Set the requested URL in the builder.
+     *
+     * @param url the URL you are requesting
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withURL(String url) {
+
+        if (url.contains(&quot;?&quot;)) {
+            handleQueryParam(url);
+        } else {
+            this.url = url;
+        }
+        return this;
+    }
+
+    /**
+     * If url contains queryParam , extract them from the this.url data member
+     * and assign the, to the this.queryParameters data member &lt;br/&gt;
+     * &lt;p&gt;
+     * For ex: &lt;br/&gt;
+     * URL: &lt;i&gt;https://lp-agentmngworkspace-qa.dev.lprnd.net/manager_workspace/api/account/le61691980/agent_view?version=v1&lt;/i&gt;
+     * will lead to : &lt;br/&gt;
+     * url = &lt;b&gt;https://lp-agentmngworkspace-qa.dev.lprnd.net/manager_workspace/api/account/le61691980/agent_view&lt;/b&gt; &lt;br/&gt;
+     * queryParameters = &lt;b&gt;&amp;version=v1&lt;/b&gt; &lt;br/&gt;
+     *
+     * @param url
+     */
+    private void handleQueryParam(String url) {
+        if (url.contains(&quot;?&quot;)) {
+            String queryParam = url.substring(url.indexOf(&quot;?&quot;));
+            if (queryParam.length() &gt; 1) {
+                queryParam = queryParam.substring(1);
+
+                String[] paramTokens = queryParam.split(&quot;&amp;&quot;);
+                if (paramTokens != null) {
+                    for (String paramToken : paramTokens) {
+                        String[] paramNameAndValue = paramToken.split(&quot;=&quot;);
+                        if (paramNameAndValue != null) {
+                            this.withURLQueryParameter(paramToken);
+                        }
+                    }
+                }
+            }
+            this.url = url.substring(0, url.indexOf(&quot;?&quot;));
+
+        }
+    }
+
+    public static String nonceGenerator() {
+        SecureRandom secureRandom = new SecureRandom();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i &lt; 15; i++) {
+            stringBuilder.append(secureRandom.nextInt(10));
+        }
+        String randomNumber = stringBuilder.toString();
+        return DigestUtils.md5Hex(randomNumber);
+    }
+
+}
+
+
+
+String Consumerkey= vars.get(&quot;Consumerkey&quot;);
+String ConsumerSecret= vars.get(&quot;ConsumerSecret&quot;);
+String AccessToken= vars.get(&quot;AccessToken&quot;);
+String TokenSecret= vars.get(&quot;TokenSecret&quot;);
+
+String authorization = new OAuth1AuthorizationHeaderBuilder()
+        .withMethod(&quot;GET&quot;)
+        .withURL(&quot;https://api.twitter.com/2/users/me&quot;)
+        .withConsumerSecret(ConsumerSecret)
+        .withTokenSecret(TokenSecret)
+        //.withParameter(&quot;oauth_callback&quot;, &quot;https://localhost&quot;)
+       // .withParameter(&quot;text&quot;, &apos;&quot;{&quot;text&quot;: &quot;Hello World!&quot;}&quot;&apos;)
+        .withParameter(&quot;oauth_consumer_key&quot;, Consumerkey)
+        .withParameter(&quot;oauth_token&quot;, AccessToken)
+        //.withParameter(&quot;oauth_nonce&quot;, &quot;kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg&quot;)
+        .build();
+
+       // byte[] authorization1 = Base64.decodeBase64(authorization);
+//System.out.println(&quot;Decoded value is &quot; + new String(valueDecoded));
+
+ //String authorization1 = URLEncoder.encode(authorization, StandardCharsets.UTF_8)
+
+        vars.put(&quot;signaturekey&quot;,authorization);
+
+        log.info(&quot;oauth token=&quot;+authorization);
+
+
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Post Tweet on X" enabled="false">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;text&quot;:&quot;Hello&quot;}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">api.twitter.com</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.path">2/tweets</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">false</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">true</boolProp>
+          <boolProp name="HTTPSampler.image_parser">false</boolProp>
+          <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <boolProp name="HTTPSampler.md5">false</boolProp>
+          <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.value">${signaturekey}</stringProp>
+                <stringProp name="Header.name">Authorization</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">User-Agent</stringProp>
+                <stringProp name="Header.value">OAuth gem v0.4.4</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="false">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">
+import org.apache.commons.codec.digest.DigestUtils;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import org.json.JSONObject;
+
+/**
+ * @author Daniel DeGroff
+ */
+public class OAuth1AuthorizationHeaderBuilder {
+    private static final char[] HEX = &quot;0123456789ABCDEF&quot;.toCharArray();
+
+    // https://tools.ietf.org/html/rfc3986#section-2.3
+    private static final Set&lt;Character&gt; UnreservedChars = new HashSet&lt;&gt;(Arrays.asList(
+        &apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos;, &apos;G&apos;, &apos;H&apos;, &apos;I&apos;, &apos;J&apos;, &apos;K&apos;, &apos;L&apos;, &apos;M&apos;, &apos;N&apos;, &apos;O&apos;, &apos;P&apos;, &apos;Q&apos;, &apos;R&apos;, &apos;S&apos;, &apos;T&apos;, &apos;U&apos;, &apos;V&apos;, &apos;W&apos;, &apos;X&apos;, &apos;Y&apos;, &apos;Z&apos;,
+        &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;, &apos;m&apos;, &apos;n&apos;, &apos;o&apos;, &apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;, &apos;t&apos;, &apos;u&apos;, &apos;v&apos;, &apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;,
+        &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;,
+        &apos;-&apos;, &apos;_&apos;, &apos;.&apos;, &apos;~&apos;));
+
+    public String consumerSecret;
+    public String method;
+    public String parameterString;
+    public String queryParameters = &quot;&quot;;
+    public Map&lt;String, String&gt; queryParametersMap = new LinkedHashMap&lt;&gt;();
+    public Map&lt;String, String&gt; parameters = new LinkedHashMap&lt;&gt;();
+    public String signature;
+    public String signatureBaseString;
+    public String signingKey;
+    public String tokenSecret;
+    public String url;
+    public String requestBody;
+    
+
+    /***
+     * Replaces any character not specifically unreserved to an equivalent percent sequence.
+     *
+     * @param s the string to encode
+     * @return and encoded string
+     */
+    public static String encodeURIComponent(String s) {
+        StringBuilder o = new StringBuilder();
+        for (byte b : s.getBytes(StandardCharsets.UTF_8)) {
+            if (isSafe(b)) {
+                o.append((char) b);
+            } else {
+                o.append(&apos;%&apos;);
+                o.append(HEX[((b &amp; 0xF0) &gt;&gt; 4)]);
+                o.append(HEX[((b &amp; 0x0F))]);
+            }
+        }
+        return o.toString();
+    }
+
+    private static boolean isSafe(byte b) {
+        return UnreservedChars.contains((char) b);
+    }
+
+    public String build() {
+        // For testing purposes, only add the timestamp if it has not yet been added
+        if (!parameters.containsKey(&quot;oauth_timestamp&quot;)) {
+            parameters.put(&quot;oauth_timestamp&quot;, &quot;&quot; + Instant.now().getEpochSecond());
+        }
+
+        //Boiler plate parameters
+        parameters.put(&quot;oauth_nonce&quot;, nonceGenerator());
+        parameters.put(&quot;oauth_signature_method&quot;, &quot;HMAC-SHA1&quot;);
+        parameters.put(&quot;oauth_version&quot;, &quot;1.0&quot;);
+
+        Map&lt;String, String&gt; parametersCopy = new LinkedHashMap&lt;&gt;(parameters);
+        parametersCopy.putAll(queryParametersMap);
+
+        //Build the parameter string after sorting the keys in lexicographic order per the OAuth v1 spec.
+        parameterString = parametersCopy.entrySet().stream()
+            .sorted(Map.Entry.comparingByKey())
+           
+            .map(e -&gt; URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + &quot;=&quot; + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+            .collect(Collectors.joining(&quot;&amp;&quot;));
+
+        // Build the signature base string URLEncoder.encode(parameterString, StandardCharsets.UTF_8)
+        //requestBody=&quot;{\&quot;text\&quot;: \&quot;Hello World!\&quot;}&quot;;
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(&quot;text&quot;, &quot;Hello World!&quot;);
+      
+
+        String requestBody = jsonObject.toString();
+        
+       // signatureBaseString = method.toUpperCase() + &quot;&amp;&quot; + URLEncoder.encode(url, StandardCharsets.UTF_8)+ &quot;&amp;&quot; + URLEncoder.encode(requestBody, StandardCharsets.UTF_8) + &quot;&amp;&quot; + URLEncoder.encode(parameterString, StandardCharsets.UTF_8);
+
+        signatureBaseString = method.toUpperCase() + &quot;&amp;&quot; + URLEncoder.encode(url, StandardCharsets.UTF_8) + &quot;&amp;&quot; + URLEncoder.encode(parameterString, StandardCharsets.UTF_8) + &quot;&amp;&quot; + URLEncoder.encode(requestBody, StandardCharsets.UTF_8);
+
+        log.info(&quot;signatureBaseString&quot;+signatureBaseString);
+
+        // If the signing key was not provided, build it by encoding the consumer secret + the token secret 
+        //URLEncoder.encode(tokenSecret, StandardCharsets.UTF_8)
+        if (signingKey == null) {
+            signingKey = URLEncoder.encode(consumerSecret, StandardCharsets.UTF_8) + &quot;&amp;&quot; + (tokenSecret == null ? &quot;&quot; : URLEncoder.encode(tokenSecret, StandardCharsets.UTF_8));
+        }
+
+        // Sign the Signature Base String
+        signature = generateSignature(signingKey, signatureBaseString);
+
+        // Add the signature to be included in the header
+        parameters.put(&quot;oauth_signature&quot;, signature);
+
+        // Build the authorization header value using the order in which the parameters were added
+        //URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8)
+        return &quot;OAuth &quot; + parameters.entrySet().stream()
+            .map(e -&gt; URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + &quot;=\&quot;&quot; + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8) + &quot;\&quot;&quot;)
+            .collect(Collectors.joining(&quot;, &quot;));
+    }
+
+    public String generateSignature(String secret, String message) {
+        try {
+            byte[] bytes = secret.getBytes(StandardCharsets.UTF_8);
+            Mac mac = Mac.getInstance(&quot;HmacSHA1&quot;);
+            mac.init(new SecretKeySpec(bytes, &quot;HmacSHA1&quot;));
+            byte[] result = mac.doFinal(message.getBytes(StandardCharsets.UTF_8));
+            return Base64.getEncoder().encodeToString(result);
+        } catch (InvalidKeyException | NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Set the Consumer Secret
+     *
+     * @param consumerSecret the Consumer Secret
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withConsumerSecret(String consumerSecret) {
+        this.consumerSecret = consumerSecret;
+        return this;
+    }
+
+    /**
+     * Set the requested HTTP method
+     *
+     * @param method the HTTP method you are requesting
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withMethod(String method) {
+        this.method = method;
+        return this;
+    }
+
+    /**
+     * Add a parameter to the be included when building the signature.
+     *
+     * @param name  the parameter name
+     * @param value the parameter value
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withParameter(String name, String value) {
+        parameters.put(name, value);
+        return this;
+    }
+
+
+    public OAuth1AuthorizationHeaderBuilder withURLQueryParameter(String queryParameters) {
+        if (queryParameters == null || queryParameters.isEmpty()) {
+            this.queryParameters = &quot;&quot;;
+        } else {
+            String[] kvp = queryParameters.split(&quot;=&quot;);
+            this.queryParametersMap.put(kvp[0], kvp[1]);
+            this.queryParameters += &quot;&amp;&quot; + queryParameters;
+        }
+        return this;
+    }
+
+    /**
+     * Set the OAuth Token Secret
+     *
+     * @param tokenSecret the OAuth Token Secret
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withTokenSecret(String tokenSecret) {
+        this.tokenSecret = tokenSecret;
+        return this;
+    }
+
+    /**
+     * Set the requested URL in the builder.
+     *
+     * @param url the URL you are requesting
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withURL(String url) {
+
+        if (url.contains(&quot;?&quot;)) {
+            handleQueryParam(url);
+        } else {
+            this.url = url;
+        }
+        return this;
+    }
+
+    /**
+     * If url contains queryParam , extract them from the this.url data member
+     * and assign the, to the this.queryParameters data member &lt;br/&gt;
+     * &lt;p&gt;
+     * For ex: &lt;br/&gt;
+     * URL: &lt;i&gt;https://lp-agentmngworkspace-qa.dev.lprnd.net/manager_workspace/api/account/le61691980/agent_view?version=v1&lt;/i&gt;
+     * will lead to : &lt;br/&gt;
+     * url = &lt;b&gt;https://lp-agentmngworkspace-qa.dev.lprnd.net/manager_workspace/api/account/le61691980/agent_view&lt;/b&gt; &lt;br/&gt;
+     * queryParameters = &lt;b&gt;&amp;version=v1&lt;/b&gt; &lt;br/&gt;
+     *
+     * @param url
+     */
+    private void handleQueryParam(String url) {
+        if (url.contains(&quot;?&quot;)) {
+            String queryParam = url.substring(url.indexOf(&quot;?&quot;));
+            if (queryParam.length() &gt; 1) {
+                queryParam = queryParam.substring(1);
+
+                String[] paramTokens = queryParam.split(&quot;&amp;&quot;);
+                if (paramTokens != null) {
+                    for (String paramToken : paramTokens) {
+                        String[] paramNameAndValue = paramToken.split(&quot;=&quot;);
+                        if (paramNameAndValue != null) {
+                            this.withURLQueryParameter(paramToken);
+                        }
+                    }
+                }
+            }
+            this.url = url.substring(0, url.indexOf(&quot;?&quot;));
+
+        }
+    }
+
+    public static String nonceGenerator() {
+        SecureRandom secureRandom = new SecureRandom();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i &lt; 15; i++) {
+            stringBuilder.append(secureRandom.nextInt(10));
+        }
+        String randomNumber = stringBuilder.toString();
+        return DigestUtils.md5Hex(randomNumber);
+    }
+
+}
+
+String authorization = new OAuth1AuthorizationHeaderBuilder()
+        .withMethod(&quot;POST&quot;)
+        .withURL(&quot;https://api.twitter.com/2/tweets&quot;)
+        .withConsumerSecret(&quot;OXD4caUGWh4FxGJtT7Mx2YIrdbjwakxubDBCMZ32zYMhbWYBWi&quot;)
+        .withTokenSecret(&quot;bvr74ejvRREGCgqhGrbmNuZk4mfWmHW9XbPMlNuGzxek2&quot;)
+        //.withParameter(&quot;oauth_callback&quot;, &quot;https://localhost&quot;)
+       // .withParameter(&quot;text&quot;, &apos;&quot;{&quot;text&quot;: &quot;Hello World!&quot;}&quot;&apos;)
+        .withParameter(&quot;oauth_consumer_key&quot;, &quot;VCv55h6RydvJeoVYzD3paG31Z&quot;)
+        .withParameter(&quot;oauth_token&quot;, &quot;934810549-GnMJwjMjLccEzspNEMG6YCs6I8BU9VNWP0SfrGlr&quot;)
+        //.withParameter(&quot;oauth_nonce&quot;, &quot;kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg&quot;)
+        .build();
+
+       // byte[] authorization1 = Base64.decodeBase64(authorization);
+//System.out.println(&quot;Decoded value is &quot; + new String(valueDecoded));
+
+ //String authorization1 = URLEncoder.encode(authorization, StandardCharsets.UTF_8)
+
+        vars.put(&quot;signaturekey&quot;,authorization);
+
+        log.info(&quot;oauth token=&quot;+authorization);
+
+
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+          <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">
+import org.apache.commons.codec.digest.DigestUtils;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+/**
+ * @author Daniel DeGroff
+ */
+public class OAuth1AuthorizationHeaderBuilder {
+    private static final char[] HEX = &quot;0123456789ABCDEF&quot;.toCharArray();
+
+    // https://tools.ietf.org/html/rfc3986#section-2.3
+    private static final Set&lt;Character&gt; UnreservedChars = new HashSet&lt;&gt;(Arrays.asList(
+        &apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;, &apos;E&apos;, &apos;F&apos;, &apos;G&apos;, &apos;H&apos;, &apos;I&apos;, &apos;J&apos;, &apos;K&apos;, &apos;L&apos;, &apos;M&apos;, &apos;N&apos;, &apos;O&apos;, &apos;P&apos;, &apos;Q&apos;, &apos;R&apos;, &apos;S&apos;, &apos;T&apos;, &apos;U&apos;, &apos;V&apos;, &apos;W&apos;, &apos;X&apos;, &apos;Y&apos;, &apos;Z&apos;,
+        &apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;, &apos;f&apos;, &apos;g&apos;, &apos;h&apos;, &apos;i&apos;, &apos;j&apos;, &apos;k&apos;, &apos;l&apos;, &apos;m&apos;, &apos;n&apos;, &apos;o&apos;, &apos;p&apos;, &apos;q&apos;, &apos;r&apos;, &apos;s&apos;, &apos;t&apos;, &apos;u&apos;, &apos;v&apos;, &apos;w&apos;, &apos;x&apos;, &apos;y&apos;, &apos;z&apos;,
+        &apos;0&apos;, &apos;1&apos;, &apos;2&apos;, &apos;3&apos;, &apos;4&apos;, &apos;5&apos;, &apos;6&apos;, &apos;7&apos;, &apos;8&apos;, &apos;9&apos;,
+        &apos;-&apos;, &apos;_&apos;, &apos;.&apos;, &apos;~&apos;));
+
+    public String consumerSecret;
+    public String method;
+    public String parameterString;
+    public String queryParameters = &quot;&quot;;
+    public Map&lt;String, String&gt; queryParametersMap = new LinkedHashMap&lt;&gt;();
+    public Map&lt;String, String&gt; parameters = new LinkedHashMap&lt;&gt;();
+    public String signature;
+    public String signatureBaseString;
+    public String signingKey;
+    public String tokenSecret;
+    public String url;
+
+    /***
+     * Replaces any character not specifically unreserved to an equivalent percent sequence.
+     *
+     * @param s the string to encode
+     * @return and encoded string
+     */
+    public static String encodeURIComponent(String s) {
+        StringBuilder o = new StringBuilder();
+        for (byte b : s.getBytes(StandardCharsets.UTF_8)) {
+            if (isSafe(b)) {
+                o.append((char) b);
+            } else {
+                o.append(&apos;%&apos;);
+                o.append(HEX[((b &amp; 0xF0) &gt;&gt; 4)]);
+                o.append(HEX[((b &amp; 0x0F))]);
+            }
+        }
+        return o.toString();
+    }
+
+    private static boolean isSafe(byte b) {
+        return UnreservedChars.contains((char) b);
+    }
+
+    public String build() {
+        // For testing purposes, only add the timestamp if it has not yet been added
+        if (!parameters.containsKey(&quot;oauth_timestamp&quot;)) {
+            parameters.put(&quot;oauth_timestamp&quot;, &quot;&quot; + Instant.now().getEpochSecond());
+        }
+
+        //Boiler plate parameters
+        parameters.put(&quot;oauth_nonce&quot;, nonceGenerator());
+        parameters.put(&quot;oauth_signature_method&quot;, &quot;HMAC-SHA1&quot;);
+        parameters.put(&quot;oauth_version&quot;, &quot;1.0&quot;);
+
+        Map&lt;String, String&gt; parametersCopy = new LinkedHashMap&lt;&gt;(parameters);
+        parametersCopy.putAll(queryParametersMap);
+
+        //Build the parameter string after sorting the keys in lexicographic order per the OAuth v1 spec.
+        parameterString = parametersCopy.entrySet().stream()
+            .sorted(Map.Entry.comparingByKey())
+            .map(e -&gt; encodeURIComponent(e.getKey()) + &quot;=&quot; + encodeURIComponent(e.getValue()))
+            .collect(Collectors.joining(&quot;&amp;&quot;));
+
+        // Build the signature base string
+        signatureBaseString = method.toUpperCase() + &quot;&amp;&quot; + encodeURIComponent(url) + &quot;&amp;&quot; + encodeURIComponent(parameterString);
+
+        // If the signing key was not provided, build it by encoding the consumer secret + the token secret
+        if (signingKey == null) {
+            signingKey = encodeURIComponent(consumerSecret) + &quot;&amp;&quot; + (tokenSecret == null ? &quot;&quot; : encodeURIComponent(tokenSecret));
+        }
+
+        // Sign the Signature Base String
+        signature = generateSignature(signingKey, signatureBaseString);
+
+        // Add the signature to be included in the header
+        parameters.put(&quot;oauth_signature&quot;, signature);
+
+        // Build the authorization header value using the order in which the parameters were added
+        return &quot;OAuth &quot; + parameters.entrySet().stream()
+            .map(e -&gt; encodeURIComponent(e.getKey()) + &quot;=\&quot;&quot; + encodeURIComponent(e.getValue()) + &quot;\&quot;&quot;)
+            .collect(Collectors.joining(&quot;, &quot;));
+    }
+
+    public String generateSignature(String secret, String message) {
+        try {
+            byte[] bytes = secret.getBytes(StandardCharsets.UTF_8);
+            Mac mac = Mac.getInstance(&quot;HmacSHA1&quot;);
+            mac.init(new SecretKeySpec(bytes, &quot;HmacSHA1&quot;));
+            byte[] result = mac.doFinal(message.getBytes(StandardCharsets.UTF_8));
+            return Base64.getEncoder().encodeToString(result);
+        } catch (InvalidKeyException | NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Set the Consumer Secret
+     *
+     * @param consumerSecret the Consumer Secret
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withConsumerSecret(String consumerSecret) {
+        this.consumerSecret = consumerSecret;
+        return this;
+    }
+
+    /**
+     * Set the requested HTTP method
+     *
+     * @param method the HTTP method you are requesting
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withMethod(String method) {
+        this.method = method;
+        return this;
+    }
+
+    /**
+     * Add a parameter to the be included when building the signature.
+     *
+     * @param name  the parameter name
+     * @param value the parameter value
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withParameter(String name, String value) {
+        parameters.put(name, value);
+        return this;
+    }
+
+
+    public OAuth1AuthorizationHeaderBuilder withURLQueryParameter(String queryParameters) {
+        if (queryParameters == null || queryParameters.isEmpty()) {
+            this.queryParameters = &quot;&quot;;
+        } else {
+            String[] kvp = queryParameters.split(&quot;=&quot;);
+            this.queryParametersMap.put(kvp[0], kvp[1]);
+            this.queryParameters += &quot;&amp;&quot; + queryParameters;
+        }
+        return this;
+    }
+
+    /**
+     * Set the OAuth Token Secret
+     *
+     * @param tokenSecret the OAuth Token Secret
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withTokenSecret(String tokenSecret) {
+        this.tokenSecret = tokenSecret;
+        return this;
+    }
+
+    /**
+     * Set the requested URL in the builder.
+     *
+     * @param url the URL you are requesting
+     * @return this
+     */
+    public OAuth1AuthorizationHeaderBuilder withURL(String url) {
+
+        if (url.contains(&quot;?&quot;)) {
+            handleQueryParam(url);
+        } else {
+            this.url = url;
+        }
+        return this;
+    }
+
+    /**
+     * If url contains queryParam , extract them from the this.url data member
+     * and assign the, to the this.queryParameters data member &lt;br/&gt;
+     * &lt;p&gt;
+     * For ex: &lt;br/&gt;
+     * URL: &lt;i&gt;https://lp-agentmngworkspace-qa.dev.lprnd.net/manager_workspace/api/account/le61691980/agent_view?version=v1&lt;/i&gt;
+     * will lead to : &lt;br/&gt;
+     * url = &lt;b&gt;https://lp-agentmngworkspace-qa.dev.lprnd.net/manager_workspace/api/account/le61691980/agent_view&lt;/b&gt; &lt;br/&gt;
+     * queryParameters = &lt;b&gt;&amp;version=v1&lt;/b&gt; &lt;br/&gt;
+     *
+     * @param url
+     */
+    private void handleQueryParam(String url) {
+        if (url.contains(&quot;?&quot;)) {
+            String queryParam = url.substring(url.indexOf(&quot;?&quot;));
+            if (queryParam.length() &gt; 1) {
+                queryParam = queryParam.substring(1);
+
+                String[] paramTokens = queryParam.split(&quot;&amp;&quot;);
+                if (paramTokens != null) {
+                    for (String paramToken : paramTokens) {
+                        String[] paramNameAndValue = paramToken.split(&quot;=&quot;);
+                        if (paramNameAndValue != null) {
+                            this.withURLQueryParameter(paramToken);
+                        }
+                    }
+                }
+            }
+            this.url = url.substring(0, url.indexOf(&quot;?&quot;));
+
+        }
+    }
+
+    public static String nonceGenerator() {
+        SecureRandom secureRandom = new SecureRandom();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i &lt; 15; i++) {
+            stringBuilder.append(secureRandom.nextInt(10));
+        }
+        String randomNumber = stringBuilder.toString();
+        return DigestUtils.md5Hex(randomNumber);
+    }
+
+}
+
+
+
+String Consumerkey= vars.get(&quot;Consumerkey&quot;);
+String ConsumerSecret= vars.get(&quot;ConsumerSecret&quot;);
+String AccessToken= vars.get(&quot;AccessToken&quot;);
+String TokenSecret= vars.get(&quot;TokenSecret&quot;);
+
+
+String authorization = new OAuth1AuthorizationHeaderBuilder()
+        .withMethod(&quot;POST&quot;)
+        .withURL(&quot;https://api.twitter.com/2/tweets&quot;)
+        .withConsumerSecret(ConsumerSecret)
+        .withTokenSecret(TokenSecret)
+        //.withParameter(&quot;oauth_callback&quot;, &quot;https://localhost&quot;)
+       // .withParameter(&quot;text&quot;, &apos;&quot;{&quot;text&quot;: &quot;Hello World!&quot;}&quot;&apos;)
+        .withParameter(&quot;oauth_consumer_key&quot;, Consumerkey)
+        .withParameter(&quot;oauth_token&quot;, AccessToken)
+        //.withParameter(&quot;oauth_nonce&quot;, &quot;kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg&quot;)
+        .build();
+
+       // byte[] authorization1 = Base64.decodeBase64(authorization);
+//System.out.println(&quot;Decoded value is &quot; + new String(valueDecoded));
+
+ //String authorization1 = URLEncoder.encode(authorization, StandardCharsets.UTF_8)
+
+        vars.put(&quot;signaturekey&quot;,authorization);
+
+        log.info(&quot;oauth token=&quot;+authorization);
+
+
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223PreProcessor>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
